@@ -34,9 +34,41 @@
 // Start js
 var cityWeather = $("#city-weather"); // the output target for api city data
 var cityForecastr = $("#city-forecast"); // out target for 5 day forecast
-var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=ce7ea9acf7f559c24dcf65e60fbcabe5'; //works only for London, UK at the moment
-console.log(apiToken);
+var cityInput = $("#city-input");
+var submitBtn = $(".input-group-append");
+// var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=ce7ea9acf7f559c24dcf65e60fbcabe5'; //works only for London, UK at the moment
+// console.log(apiToken);
 
+// console.log(cityInput);
+submitBtn.on("click", function(){
+    alert("alert!");
+});
+
+document.getElementById("city-input").addEventListener("click", function(){
+    alert("this worked!");
+});
+
+
+// function formSubmitHandler(event) {
+//     event.preventDefault();
+  
+//     var cityName = cityInput.value.trim();
+//     console.log(cityName);
+  
+    // if (cityName) {
+    // //   getUserRepos(username);
+  
+    //   repoContainerEl.textContent = '';
+    //   nameInputEl.value = '';
+    // } else {
+    //   alert('Please enter a GitHub username');
+    // }
+//   };
+//##### button onclick
+// submitBtn.on("click", formSubmitHandler);
+
+
+//##### the fetch ####
 // var getUserRepos = function (user) {
 //     var apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
   
@@ -54,5 +86,3 @@ console.log(apiToken);
 //         alert('Unable to connect to Open Weather!');
 //       });
 //   };
-
-  
