@@ -11,13 +11,13 @@ This is an application that allows Users to track their schedule for a workday. 
 ## Installation
 To clone this to your repository, please use 
 ```
-SSH: git clone git@github.com:d606n6k/work-day-scheduler.git
+SSH: git clone git@github.com:d606n6k/weather-dashboard.git
 ```
 ```
-HTTPS: git clone https://github.com/d606n6k/work-day-scheduler.git
+HTTPS: git clone https://github.com/d606n6k/weather-dashboard.git
 ```
 ```
-GitHub CLI: gh repo clone d606n6k/work-day-scheduler
+GitHub CLI: gh repo clone d606n6k/weather-dashboard
 ```
 
 ## Usage
