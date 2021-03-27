@@ -35,17 +35,14 @@
 var cityWeather = $("#city-weather"); // the output target for api city data
 var cityForecastr = $("#city-forecast"); // out target for 5 day forecast
 var cityInput = $("#city-input");
-var submitBtn = $(".input-group-append");
+var submitBtn = $("#submit-btn");
 // var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=ce7ea9acf7f559c24dcf65e60fbcabe5'; //works only for London, UK at the moment
 // console.log(apiToken);
 
 // console.log(cityInput);
-submitBtn.on("click", function(){
-    alert("alert!");
-});
-
-document.getElementById("city-input").addEventListener("click", function(){
-    alert("this worked!");
+submitBtn.on("click", function(event){
+    getText = $(this).siblings("#city-input").val();
+    window.localStorage.setItem("city", getText);
 });
 
 
