@@ -1,8 +1,13 @@
   /* Begin Custom Styles */
-  main {
+  .red {
     background-color: red;
   }
 
-  aside {
+  .blue {
     background-color: blue;;
+  }
+
+  .custom-button {
+    background-color: #00aac1;
+    color: white;
   }
