@@ -42,8 +42,13 @@ var submitBtn = $("#submit-btn");
 // console.log(cityInput);
 submitBtn.on("click", function(event){
     getText = $(this).siblings("#city-input").val();
+    if(getText === "undefined"){
+        // if the text is undefined we need to not let the user submit the search to localstorage
+        alert("Something!")
+    }
     window.localStorage.setItem("city", getText);
 });
+// we need to output localstorage items to ul > li items w links
 
 
 // function formSubmitHandler(event) {
