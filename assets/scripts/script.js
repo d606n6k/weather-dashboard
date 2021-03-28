@@ -53,7 +53,7 @@ function renderWeather(weather){
 
     // create icon from weather data
     var icon = weather.list[0].weather[0].icon;
-    var iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
+    var iconUrl = `HTTPS://openweathermap.org/img/wn/${icon}.png`;
     var weatherIcon = document.createElement("img"); 
     weatherIcon.setAttribute("src", iconUrl);
     weatherIcon.setAttribute("class", "p-2 ml-2 weather-icon rounded-circle");
@@ -87,7 +87,7 @@ function renderFiveDay(weather){
 
     // icon
     var fiveDayIcon = weather.list[0].weather[0].icon;
-    var fiveDayIconUrl = `https://openweathermap.org/img/wn/${fiveDayIcon}.png`;
+    var fiveDayIconUrl = `HTTPS://openweathermap.org/img/wn/${fiveDayIcon}.png`;
     var fcIconFirst = document.createElement("img");
     fcIconFirst.setAttribute("src", fiveDayIconUrl);
      
@@ -108,7 +108,7 @@ function renderFiveDay(weather){
 };
 
 function fetchWeather(){
-    var apiToken = 'https://api.openweathermap.org/data/2.5/forecast?q=London&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+    var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=London&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
     fetch(apiToken)
     .then(response => response.json())
     .then(data => renderWeather(data));
@@ -116,7 +116,7 @@ function fetchWeather(){
 
   // 5 day forecast
 function weatherFiveDay(){
-    fiveDayApiToken = 'https://api.openweathermap.org/data/2.5/forecast?q=London&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
+    fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=London&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
     fetch(fiveDayApiToken)
     .then(response => response.json())
     .then(data => renderFiveDay(data));
