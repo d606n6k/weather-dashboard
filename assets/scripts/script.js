@@ -38,6 +38,8 @@ var cityWeather = $("#city-weather"); // the output target for api city data
 var cityForecaster = $("#city-forecast"); // out target for 5 day forecast
 var cityInput = $("#city-input");
 var submitBtn = $("#submit-btn");
+var searchListGroup = $(".list-group");
+var searchedCities = [];
 
 // console.log(apiToken);
 
@@ -50,7 +52,6 @@ function renderWeather(weather){
 
     // create icon from weather data
     var icon = weather.list[0].weather[0].icon;
-    // var iconUrl = "https://openweathermap.org/img/w/04n.png";
     var iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
     var weatherIcon = document.createElement("img"); 
     weatherIcon.setAttribute("src", iconUrl);
@@ -112,17 +113,24 @@ function weatherFiveDay(){
 };
 // console.log(weatherFiveDay);
 
-// search bar
-    // button click
 submitBtn.on("click", function(event){
     getText = $(this).siblings("#city-input").val();
 
+    // '#list-group' is container ul
+    // '#list-group-item' is for li items 
     // WIP
-    if(getText === "undefined"){
-        // if the text is undefined we need to not let the user submit the search to localstorage
-        alert("Something!")
+    if(!getText){
+        alert("Please Enter a City Name!")
+        return;
+    } else {
+        searchedCities.push(getText);
+        window.localStorage.setItem("city", searchedCities);
+        var searchedItem = document.createElement("button");
+        searchedItem.setAttribute("class", "list-group-item");
+        searchedItem.textContent = searchedCities;
+        searchListGroup.append(searchedItem);
     }
-    window.localStorage.setItem("city", getText);
+   
 });
 // we need to output localstorage items to ul > li items w links
 
