@@ -1,9 +1,11 @@
-// Open Weather Map API Key - ce7ea9acf7f559c24dcf65e60fbcabe5
-
 // TODOS
 // create repo w readme - DONE
 // add Bootstrap to html - DONE
 // add jQuery to html - DONE
+// add 5 day forecast
+    // create  
+    // get an append to cityForecaster div
+    
 
 // Pseudo-Code
 // WHEN user enters a city and presses SEARCH BUTTON
@@ -33,15 +35,14 @@
     
 // Start js
 var cityWeather = $("#city-weather"); // the output target for api city data
-var cityForecastr = $("#city-forecast"); // out target for 5 day forecast
+var cityForecaster = $("#city-forecast"); // out target for 5 day forecast
 var cityInput = $("#city-input");
 var submitBtn = $("#submit-btn");
 
 // console.log(apiToken);
 
 function renderWeather(weather){
-    console.log(weather);
-
+    // console.log(weather);
     // create h2 for the city name
     var cityName = document.createElement("h2");
     cityName.textContent = weather.city.name; 
@@ -50,14 +51,14 @@ function renderWeather(weather){
     // create icon from weather data
     var icon = weather.list[0].weather[0].icon;
     var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
-    // question for office hours: how the hell do I at an src attribute when creating an element via createElement
+    // question for office hours: how the hell do I add an src attribute when creating an element via createElement
     var weatherIcon = document.createElement("p", { src : iconUrl});
     $("i").attr("src", iconUrl);
     // document.getElementsByTagName(i).src = iconUrl;
     weatherIcon.textContent = weather.list[0].weather[0].icon;
     cityWeather.append(weatherIcon);
 
-    // create p tag for himidity, wind, description, temp
+    // create p tag for himidity, wind,  temp
     var temperature = document.createElement("p");
     temperature.textContent = "Temperature: " + weather.list[0].main.temp + "F";
     cityWeather.append(temperature);
@@ -72,13 +73,56 @@ function renderWeather(weather){
 };
 
 function fetchWeather(){
-    var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+    var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=London&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
     fetch(apiToken)
     .then(response => response.json())
     .then(data => renderWeather(data));
 };
 
-// console.log(cityInput);
+function renderFiveDay(weather){
+    console.log(weather);
+// OFFICE HOURS Q: possible for loop to iterate over all list items and display them? Also how do I group to display on a card
+
+    // first item 
+    var fcDateFirst = document.createElement("p");
+    fcDateFirst.textContent = weather.list[0].dt_txt; 
+    cityForecaster.append(fcDateFirst);
+
+    // icon
+    var fcIconFirst = document.createElement("p");
+    fcIconFirst.textContent = weather.list[0].weather[0].icon; 
+    cityForecaster.append(fcIconFirst);
+
+    // temp
+    var fcTempFirst = document.createElement("p");
+    fcTempFirst.textContent = weather.list[0].main.temp; 
+    cityForecaster.append(fcTempFirst);
+
+    // humidity
+    var fcHumidityFirst = document.createElement("p");
+    fcHumidityFirst.textContent = weather.list[0].main.humidity; 
+    cityForecaster.append(fcHumidityFirst);
+
+};
+
+function fetchWeather(){
+    var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=London&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+    fetch(apiToken)
+    .then(response => response.json())
+    .then(data => renderWeather(data));
+};
+
+  // 5 day forecast
+function weatherFiveDay(){
+    fiveDayApiToken = 'https://api.openweathermap.org/data/2.5/forecast?q=London&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
+    fetch(fiveDayApiToken)
+    .then(response => response.json())
+    .then(data => renderFiveDay(data));
+};
+// console.log(weatherFiveDay);
+
+// search bar
+    // button click
 submitBtn.on("click", function(event){
     getText = $(this).siblings("#city-input").val();
 
@@ -91,44 +135,7 @@ submitBtn.on("click", function(event){
 });
 // we need to output localstorage items to ul > li items w links
 
-
-// function formSubmitHandler(event) {
-//     event.preventDefault();
-  
-//     var cityName = cityInput.value.trim();
-//     console.log(cityName);
-  
-    // if (cityName) {
-    // //   getUserRepos(username);
-  
-    //   repoContainerEl.textContent = '';
-    //   nameInputEl.value = '';
-    // } else {
-    //   alert('Please enter a GitHub username');
-    // }
-//   };
-//##### button onclick
-// submitBtn.on("click", formSubmitHandler);
-
-
-//##### the fetch ####
-// var getUserRepos = function (user) {
-//     var apiUrl = 'http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
-  
-//     fetch(apiUrl)
-//       .then(function (response) {
-//         if (response.ok) {
-//           response.json().then(function (data) {
-//             displayRepos(data, user);
-//           });
-//         } else {
-//           alert('Error: ' + response.statusText);
-//         }
-//       })
-//       .catch(function (error) {
-//         alert('Unable to connect to Open Weather!');
-//       });
-//   };
-
 fetchWeather();
+weatherFiveDay();
 renderWeather();
+renderFiveDay();

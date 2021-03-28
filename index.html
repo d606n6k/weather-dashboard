@@ -21,7 +21,7 @@
     <main>
         <section class="container-fluid">
             <div class="row">
-                <div class="col-sm-4 col-md-4 col-12 red">
+                <div class="col-sm-4 col-md-4 col-12 aside-background">
                     <!-- we need a search bar here (find one/use Bootstrap) -->
                     <!-- New search bar and button -->
                     <div class="input-group mb-3 pt-2">
@@ -39,11 +39,13 @@
                         <li class="list-group-item">And a fifth one</li>
                     </ul>
                 </div>
-                <div class="col-sm-8 col-md-8 col-12  blue">
+                <div class="col-sm-8 col-md-8 col-12 weather-main-bg">
                     <!-- container div for City weather display -->
-                    <div id="city-weather"></div>
+                    <div id="city-weather" class="mt-2"></div>
                     <!-- container div for 5-day forecast display -->
-                    <div id="city-forecast"></div>
+                    <div id="city-forecast">
+                        <h2>Five Day Forecast</h2>
+                    </div>
                 </div>
             </div>    
         </section>

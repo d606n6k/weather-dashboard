@@ -1,13 +1,17 @@
   /* Begin Custom Styles */
-  .red {
-    background-color: red;
+  .aside-background {
+    background-color: #e3e3e3;
   }
 
-  .blue {
-    background-color: blue;;
+  .weather-main-bg {
+    background-color: #f5f5f5;;
   }
 
   .custom-button {
     background-color: #00aac1;
     color: white;
+  }
+
+  h1 {
+      text-align: center;
   }
