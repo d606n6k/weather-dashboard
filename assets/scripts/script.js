@@ -44,9 +44,10 @@ var searchedCities = [];
 // console.log(apiToken);
 
 function renderWeather(weather){
-    console.log(weather);
+    // console.log(weather);
     // create h2 for the city name
     var cityName = document.createElement("h2");
+    cityName.classList = "p-2 rounded";
     cityName.textContent = weather.city.name; 
     cityWeather.append(cityName);
 
@@ -55,18 +56,22 @@ function renderWeather(weather){
     var iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
     var weatherIcon = document.createElement("img"); 
     weatherIcon.setAttribute("src", iconUrl);
+    weatherIcon.setAttribute("class", "p-2 ml-2 weather-icon rounded-circle");
     cityWeather.append(weatherIcon);
 
-    // create p tag for himidity, wind,  temp
+    // create p tag for humidity, wind,  temp
     var temperature = document.createElement("p");
+    temperature.classList = "mb-2 mt-1 ml-2";
     temperature.textContent = "Temperature: " + weather.list[0].main.temp + "F";
     cityWeather.append(temperature);
     
     var humidity = document.createElement("p");
+    humidity.classList = "mb-2 mt-1 ml-2";
     humidity.textContent = "Humidity: " + weather.list[0].main.humidity + "%";
     cityWeather.append(humidity);
 
     var wind = document.createElement("p");
+    wind.classList = "mb-0 mt-1 ml-2 pb-2";
     wind.textContent = "Current Wind Speed: " + weather.list[0].wind.speed + " mph, at " + weather.list[0].wind.deg + " degrees";
     cityWeather.append(wind);
 };
@@ -81,10 +86,15 @@ function renderFiveDay(weather){
     cityForecaster.append(fcDateFirst);
 
     // icon
-    var fcIconFirst = document.createElement("p");
-    fcIconFirst.textContent = weather.list[0].weather[0].icon; 
+    var fiveDayIcon = weather.list[0].weather[0].icon;
+    var fiveDayIconUrl = `https://openweathermap.org/img/wn/${fiveDayIcon}.png`;
+    var fcIconFirst = document.createElement("img");
+    fcIconFirst.setAttribute("src", fiveDayIconUrl);
+     
     cityForecaster.append(fcIconFirst);
 
+
+    
     // temp
     var fcTempFirst = document.createElement("p");
     fcTempFirst.textContent = weather.list[0].main.temp; 
@@ -116,9 +126,6 @@ function weatherFiveDay(){
 submitBtn.on("click", function(event){
     getText = $(this).siblings("#city-input").val();
 
-    // '#list-group' is container ul
-    // '#list-group-item' is for li items 
-    // WIP
     if(!getText){
         alert("Please Enter a City Name!")
         return;
@@ -129,12 +136,17 @@ submitBtn.on("click", function(event){
         searchedItem.setAttribute("class", "list-group-item");
         searchedItem.textContent = searchedCities;
         searchListGroup.append(searchedItem);
+    
     }
-   
 });
+// WIP Get the items out of localstorage and display them!
+function getPastSearch(){
+    window.localStorage.getItem(searchedCities);
+};
 // we need to output localstorage items to ul > li items w links
 
 fetchWeather();
 weatherFiveDay();
 renderWeather();
 renderFiveDay();
+
