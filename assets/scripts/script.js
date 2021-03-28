@@ -41,10 +41,22 @@ var submitBtn = $("#submit-btn");
 
 function renderWeather(weather){
     console.log(weather);
+
     // create h2 for the city name
     var cityName = document.createElement("h2");
     cityName.textContent = weather.city.name; 
     cityWeather.append(cityName);
+
+    // create icon from weather data
+    var icon = weather.list[0].weather[0].icon;
+    var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
+    // question for office hours: how the hell do I at an src attribute when creating an element via createElement
+    var weatherIcon = document.createElement("p", { src : iconUrl});
+    $("i").attr("src", iconUrl);
+    // document.getElementsByTagName(i).src = iconUrl;
+    weatherIcon.textContent = weather.list[0].weather[0].icon;
+    cityWeather.append(weatherIcon);
+
     // create p tag for himidity, wind, description, temp
     var temperature = document.createElement("p");
     temperature.textContent = "Temperature: " + weather.list[0].main.temp + "F";
@@ -69,6 +81,8 @@ function fetchWeather(){
 // console.log(cityInput);
 submitBtn.on("click", function(event){
     getText = $(this).siblings("#city-input").val();
+
+    // WIP
     if(getText === "undefined"){
         // if the text is undefined we need to not let the user submit the search to localstorage
         alert("Something!")
