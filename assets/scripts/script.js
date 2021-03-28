@@ -108,7 +108,7 @@ function renderFiveDay(weather){
 };
 
 function fetchWeather(){
-    var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=London&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+    var apiToken = 'https://api.openweathermap.org/data/2.5/forecast?q=London&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
     fetch(apiToken)
     .then(response => response.json())
     .then(data => renderWeather(data));
