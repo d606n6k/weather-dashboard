@@ -42,7 +42,7 @@ var submitBtn = $("#submit-btn");
 // console.log(apiToken);
 
 function renderWeather(weather){
-    // console.log(weather);
+    console.log(weather);
     // create h2 for the city name
     var cityName = document.createElement("h2");
     cityName.textContent = weather.city.name; 
@@ -50,12 +50,10 @@ function renderWeather(weather){
 
     // create icon from weather data
     var icon = weather.list[0].weather[0].icon;
-    var iconUrl = "http://openweathermap.org/img/w/" + icon + ".png";
-    // question for office hours: how the hell do I add an src attribute when creating an element via createElement
-    var weatherIcon = document.createElement("p", { src : iconUrl});
-    $("i").attr("src", iconUrl);
-    // document.getElementsByTagName(i).src = iconUrl;
-    weatherIcon.textContent = weather.list[0].weather[0].icon;
+    // var iconUrl = "https://openweathermap.org/img/w/04n.png";
+    var iconUrl = `https://openweathermap.org/img/wn/${icon}.png`;
+    var weatherIcon = document.createElement("img"); 
+    weatherIcon.setAttribute("src", iconUrl);
     cityWeather.append(weatherIcon);
 
     // create p tag for himidity, wind,  temp
@@ -72,16 +70,9 @@ function renderWeather(weather){
     cityWeather.append(wind);
 };
 
-function fetchWeather(){
-    var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=London&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
-    fetch(apiToken)
-    .then(response => response.json())
-    .then(data => renderWeather(data));
-};
-
 function renderFiveDay(weather){
     console.log(weather);
-// OFFICE HOURS Q: possible for loop to iterate over all list items and display them? Also how do I group to display on a card
+// OFFICE HOURS Q: possible for loop to iterate over all list items and display them? Also how do I group to display on a card?
 
     // first item 
     var fcDateFirst = document.createElement("p");
