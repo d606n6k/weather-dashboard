@@ -36,8 +36,35 @@ var cityWeather = $("#city-weather"); // the output target for api city data
 var cityForecastr = $("#city-forecast"); // out target for 5 day forecast
 var cityInput = $("#city-input");
 var submitBtn = $("#submit-btn");
-// var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=ce7ea9acf7f559c24dcf65e60fbcabe5'; //works only for London, UK at the moment
+
 // console.log(apiToken);
+
+function renderWeather(weather){
+    console.log(weather);
+    // create h2 for the city name
+    var cityName = document.createElement("h2");
+    cityName.textContent = weather.city.name; 
+    cityWeather.append(cityName);
+    // create p tag for himidity, wind, description, temp
+    var temperature = document.createElement("p");
+    temperature.textContent = "Temperature: " + weather.list[0].main.temp + "F";
+    cityWeather.append(temperature);
+    
+    var humidity = document.createElement("p");
+    humidity.textContent = "Humidity: " + weather.list[0].main.humidity + "%";
+    cityWeather.append(humidity);
+
+    var wind = document.createElement("p");
+    wind.textContent = "Current Wind Speed: " + weather.list[0].wind.speed + " mph, at " + weather.list[0].wind.deg + " degrees";
+    cityWeather.append(wind);
+};
+
+function fetchWeather(){
+    var apiToken = 'http://api.openweathermap.org/data/2.5/forecast?q=london,uk&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+    fetch(apiToken)
+    .then(response => response.json())
+    .then(data => renderWeather(data));
+};
 
 // console.log(cityInput);
 submitBtn.on("click", function(event){
@@ -88,3 +115,6 @@ submitBtn.on("click", function(event){
 //         alert('Unable to connect to Open Weather!');
 //       });
 //   };
+
+fetchWeather();
+renderWeather();
