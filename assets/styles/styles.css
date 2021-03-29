@@ -36,6 +36,9 @@
     background-color: #d6d6d6;
     box-shadow: -2px 1px #cccccc;
   }
+.input-group {
+    max-width: 360px;
+}
 
   .list-group-item {
       text-align: left;

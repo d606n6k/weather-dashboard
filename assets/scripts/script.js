@@ -33,7 +33,7 @@ var searchListGroup = $(".list-group");
 var searchedCities = [];
 
 function renderWeather(weather){
-    // console.log(weather);
+    console.log(weather);
     // create h2 for the city name
     var cityName = document.createElement("h2");
     cityName.classList = "p-2 rounded";
@@ -49,9 +49,10 @@ function renderWeather(weather){
     cityWeather.append(weatherIcon);
 
     // create p tag for humidity, wind,  temp
+    // !! I need to figure out how to display the temp in farenheit
     var temperature = document.createElement("p");
     temperature.classList = "mb-2 mt-1 ml-2";
-    temperature.textContent = "Temperature: " + weather.list[0].main.temp + "C";
+    temperature.textContent = "Temperature: " + weather.list[0].main.temp + "F";
     cityWeather.append(temperature);
     
     var humidity = document.createElement("p");
@@ -66,7 +67,7 @@ function renderWeather(weather){
 };
 
 function renderFiveDay(weather){
-    console.log(weather);
+    // console.log(weather);
 // OFFICE HOURS Q: possible for loop to iterate over all list items and display them? Also how do I group to display on a card?
 
     // first item 
@@ -86,7 +87,7 @@ function renderFiveDay(weather){
     // temp
     var fcTempFirst = document.createElement("p");
     fcTempFirst.classList = "mb-2 mt-1 ml-2";
-    fcTempFirst.textContent = "Projected Temperature: " +weather.list[0].main.temp; 
+    fcTempFirst.textContent = "Projected Temperature: " +weather.list[0].main.temp + " F"; 
     cityForecaster.append(fcTempFirst);
 
     // humidity
@@ -98,7 +99,7 @@ function renderFiveDay(weather){
 };
 
 function fetchWeather(){
-    var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=Honolulu&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+    var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=Honolulu&units=imperial&units=imperial&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
     fetch(apiToken)
     .then(response => response.json())
     .then(data => renderWeather(data));
@@ -126,9 +127,11 @@ submitBtn.on("click", function(event){
         searchedItem.setAttribute("class", "list-group-item");
         searchedItem.textContent = searchedCities;
         searchListGroup.append(searchedItem);
-    
+        searchedCities = [];
     }
+    document.getElementById("city-input").value = '';
 });
+
 // WIP Get the items out of localstorage and display them!
 function getPastSearch(){
     var getItems = window.localStorage.getItem(searchedCities);
