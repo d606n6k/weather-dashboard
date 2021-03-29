@@ -25,19 +25,18 @@
                 // list item should be clickable and runs the search for that city/input value
     
 // Office Hours question
-    // 1. How do I take the input text and append it into the api request
     // 2. How to I set up/iterate the five day forecast into cards
 
 // Start js
 var cityWeather = $("#city-weather"); // the output target for api city data
-var cityForecaster = $("#city-forecast"); // out target for 5 day forecast
+var cityForecaster = $("#city-forecast"); // out target for 5 day forecast data
 var cityInput = $("#city-input");
 var submitBtn = $("#submit-btn");
 var searchListGroup = $(".list-group");
 var searchedCities = [];
 
 function renderWeather(weather){
-    // console.log(weather);
+    console.log(weather);
     
     // create h2 for the city name
     var cityName = document.createElement("h2");
@@ -66,15 +65,13 @@ function renderWeather(weather){
 
     var wind = document.createElement("p");
     wind.classList = "mb-0 mt-1 ml-2 pb-2";
-    wind.textContent = "Current Wind Speed: " + weather.list[0].wind.speed + " mph, at " + weather.list[0].wind.deg + " degrees";
+    wind.textContent = "Current Wind Speed: " + weather.list[0].wind.speed + " mph";
     cityWeather.append(wind);
 };
 
 function renderFiveDay(weather){
     // console.log(weather);
 // OFFICE HOURS Q: possible for loop to iterate over all list items and display them? Also how do I group to display on a card?
-    
-    
     
     var fch2 = document.createElement("h2");
     fch2.classList = "p-2 rounded";
@@ -104,13 +101,11 @@ function renderFiveDay(weather){
     // humidity
     var fcHumidityFirst = document.createElement("p");
     fcHumidityFirst.classList = "mb-2 mt-1 ml-2";
-    fcHumidityFirst.textContent = "Projected Humidity: " + weather.list[0].main.humidity; + "%" 
+    fcHumidityFirst.textContent = "Projected Humidity: " + weather.list[0].main.humidity + "%"; 
     cityForecaster.append(fcHumidityFirst);
-
-     
-
 };
 
+// city current weather 
 function fetchWeather(getText){
     var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&units=imperial&units=imperial&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
     fetch(apiToken)
@@ -146,16 +141,14 @@ submitBtn.on("click", function(event){
         fetchWeather(getText);
         weatherFiveDay(getText);
     }
-    document.getElementById("city-input").value = '';
 });
 
-// WIP Get the items out of localstorage and display them!
-function getPastSearch(){
-    var getItems = window.localStorage.getItem(searchedCities);
-    console.log(getItems);
-};
+// Not sure if this code is needed
+// function getPastSearch(){
+//     var getItems = window.localStorage.getItem(searchedCities);
+// };
 
-getPastSearch();
+// getPastSearch();
 renderWeather();
 renderFiveDay();
 
