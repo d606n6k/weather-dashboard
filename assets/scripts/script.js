@@ -37,8 +37,8 @@ var searchListGroup = $(".list-group");
 var searchedCities = [];
 
 function renderWeather(weather){
-    console.log(weather);
-    cityWeather.empty();
+    // console.log(weather);
+    
     // create h2 for the city name
     var cityName = document.createElement("h2");
     cityName.classList = "p-2 rounded";
@@ -74,14 +74,12 @@ function renderFiveDay(weather){
     // console.log(weather);
 // OFFICE HOURS Q: possible for loop to iterate over all list items and display them? Also how do I group to display on a card?
     
-    cityForecaster.empty();
     
-    // create h2
-    // cityForecaster.append('<h2 class="p-2 rounded">Five Day Forecast</h2>');
+    
     var fch2 = document.createElement("h2");
     fch2.classList = "p-2 rounded";
     fch2.textContent = "Five Day Forecast";
-    cityForecaster.append(fch2);
+    cityForecaster.append(fch2);    
 
     // first item 
     var fcDateFirst = document.createElement("p");
@@ -106,7 +104,7 @@ function renderFiveDay(weather){
     // humidity
     var fcHumidityFirst = document.createElement("p");
     fcHumidityFirst.classList = "mb-2 mt-1 ml-2";
-    fcHumidityFirst.textContent = "Projected Humidity: " + weather.list[0].main.humidity; 
+    fcHumidityFirst.textContent = "Projected Humidity: " + weather.list[0].main.humidity; + "%" 
     cityForecaster.append(fcHumidityFirst);
 
      
@@ -143,6 +141,8 @@ submitBtn.on("click", function(event){
         searchedItem.textContent = searchedCities;
         searchListGroup.append(searchedItem);
         searchedCities = [];
+        cityWeather.empty();
+        cityForecaster.empty();
         fetchWeather(getText);
         weatherFiveDay(getText);
     }
@@ -156,8 +156,6 @@ function getPastSearch(){
 };
 
 getPastSearch();
-fetchWeather();
-weatherFiveDay();
 renderWeather();
 renderFiveDay();
 
