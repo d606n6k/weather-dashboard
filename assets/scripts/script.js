@@ -98,7 +98,7 @@ function renderFiveDay(weather){
 };
 
 function fetchWeather(){
-    var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=London&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+    var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=Honolulu&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
     fetch(apiToken)
     .then(response => response.json())
     .then(data => renderWeather(data));
@@ -106,7 +106,7 @@ function fetchWeather(){
 
   // 5 day forecast
 function weatherFiveDay(){
-    fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=London&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
+    fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=Honolulu&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
     fetch(fiveDayApiToken)
     .then(response => response.json())
     .then(data => renderFiveDay(data));
