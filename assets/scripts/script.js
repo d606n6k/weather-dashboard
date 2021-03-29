@@ -24,6 +24,10 @@
             // append to list in sidebar 
                 // list item should be clickable and runs the search for that city/input value
     
+// Office Hours question
+    // 1. How do I take the input text and append it into the api request
+    // 2. How to I set up/iterate the five day forecast into cards
+
 // Start js
 var cityWeather = $("#city-weather"); // the output target for api city data
 var cityForecaster = $("#city-forecast"); // out target for 5 day forecast
@@ -49,10 +53,9 @@ function renderWeather(weather){
     cityWeather.append(weatherIcon);
 
     // create p tag for humidity, wind,  temp
-    // !! I need to figure out how to display the temp in farenheit
     var temperature = document.createElement("p");
     temperature.classList = "mb-2 mt-1 ml-2";
-    temperature.textContent = "Temperature: " + weather.list[0].main.temp + "F";
+    temperature.textContent = "Temperature: " + weather.list[0].main.temp + "°F";
     cityWeather.append(temperature);
     
     var humidity = document.createElement("p");
@@ -87,7 +90,7 @@ function renderFiveDay(weather){
     // temp
     var fcTempFirst = document.createElement("p");
     fcTempFirst.classList = "mb-2 mt-1 ml-2";
-    fcTempFirst.textContent = "Projected Temperature: " +weather.list[0].main.temp + " F"; 
+    fcTempFirst.textContent = "Projected Temperature: " +weather.list[0].main.temp + " °F"; 
     cityForecaster.append(fcTempFirst);
 
     // humidity
@@ -98,16 +101,16 @@ function renderFiveDay(weather){
 
 };
 
-function fetchWeather(){
-    var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=Honolulu&units=imperial&units=imperial&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+function fetchWeather(getText){
+    var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&units=imperial&units=imperial&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
     fetch(apiToken)
     .then(response => response.json())
     .then(data => renderWeather(data));
 };
 
   // 5 day forecast
-function weatherFiveDay(){
-    fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=Honolulu&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
+function weatherFiveDay(getText){
+    fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
     fetch(fiveDayApiToken)
     .then(response => response.json())
     .then(data => renderFiveDay(data));
@@ -128,6 +131,8 @@ submitBtn.on("click", function(event){
         searchedItem.textContent = searchedCities;
         searchListGroup.append(searchedItem);
         searchedCities = [];
+        fetchWeather(getText);
+        weatherFiveDay(getText);
     }
     document.getElementById("city-input").value = '';
 });
