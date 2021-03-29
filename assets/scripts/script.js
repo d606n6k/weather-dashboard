@@ -51,7 +51,7 @@ function renderWeather(weather){
     // create p tag for humidity, wind,  temp
     var temperature = document.createElement("p");
     temperature.classList = "mb-2 mt-1 ml-2";
-    temperature.textContent = "Temperature: " + weather.list[0].main.temp + "F";
+    temperature.textContent = "Temperature: " + weather.list[0].main.temp + "C";
     cityWeather.append(temperature);
     
     var humidity = document.createElement("p");
