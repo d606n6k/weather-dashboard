@@ -1,12 +1,3 @@
-// TODOS
-// create repo w readme - DONE
-// add Bootstrap to html - DONE
-// add jQuery to html - DONE
-// add 5 day forecast
-    // create  
-    // get an append to cityForecaster div
-    
-
 // Pseudo-Code
 // WHEN user enters a city and presses SEARCH BUTTON
     // THEN send request to API for weather data for searched city
@@ -40,8 +31,6 @@ var cityInput = $("#city-input");
 var submitBtn = $("#submit-btn");
 var searchListGroup = $(".list-group");
 var searchedCities = [];
-
-// console.log(apiToken);
 
 function renderWeather(weather){
     // console.log(weather);
@@ -92,11 +81,8 @@ function renderFiveDay(weather){
     var fcIconFirst = document.createElement("img");
     fcIconFirst.classList = "p-2 ml-2 weather-icon rounded-circle";
     fcIconFirst.setAttribute("src", fiveDayIconUrl);
-     
     cityForecaster.append(fcIconFirst);
 
-
-    
     // temp
     var fcTempFirst = document.createElement("p");
     fcTempFirst.classList = "mb-2 mt-1 ml-2";
@@ -145,10 +131,11 @@ submitBtn.on("click", function(event){
 });
 // WIP Get the items out of localstorage and display them!
 function getPastSearch(){
-    window.localStorage.getItem(searchedCities);
+    var getItems = window.localStorage.getItem(searchedCities);
+    console.log(getItems);
 };
-// we need to output localstorage items to ul > li items w links
 
+getPastSearch();
 fetchWeather();
 weatherFiveDay();
 renderWeather();

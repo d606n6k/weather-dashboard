@@ -22,13 +22,19 @@
     background-color: #fc9e1d;
     color: white;
   }
+
+  #city-forecast {
+    background-color: #eaeaea;
+  }
+
   #city-forecast h2{
     background-color: #00a6c7;
     color: white;
   }
 
   .weather-icon{
-      background-color: #d6d6d6;
+    background-color: #d6d6d6;
+    box-shadow: -2px 1px #cccccc;
   }
 
   .list-group-item {
