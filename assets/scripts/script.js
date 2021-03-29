@@ -82,6 +82,7 @@ function renderFiveDay(weather){
 
     // first item 
     var fcDateFirst = document.createElement("p");
+    fcDateFirst.classList = "p-2";
     fcDateFirst.textContent = weather.list[0].dt_txt; 
     cityForecaster.append(fcDateFirst);
 
@@ -89,6 +90,7 @@ function renderFiveDay(weather){
     var fiveDayIcon = weather.list[0].weather[0].icon;
     var fiveDayIconUrl = `HTTPS://openweathermap.org/img/wn/${fiveDayIcon}.png`;
     var fcIconFirst = document.createElement("img");
+    fcIconFirst.classList = "p-2 ml-2 weather-icon rounded-circle";
     fcIconFirst.setAttribute("src", fiveDayIconUrl);
      
     cityForecaster.append(fcIconFirst);
@@ -97,12 +99,14 @@ function renderFiveDay(weather){
     
     // temp
     var fcTempFirst = document.createElement("p");
-    fcTempFirst.textContent = weather.list[0].main.temp; 
+    fcTempFirst.classList = "mb-2 mt-1 ml-2";
+    fcTempFirst.textContent = "Projected Temperature: " +weather.list[0].main.temp; 
     cityForecaster.append(fcTempFirst);
 
     // humidity
     var fcHumidityFirst = document.createElement("p");
-    fcHumidityFirst.textContent = weather.list[0].main.humidity; 
+    fcHumidityFirst.classList = "mb-2 mt-1 ml-2";
+    fcHumidityFirst.textContent = "Projected Humidity: " + weather.list[0].main.humidity; 
     cityForecaster.append(fcHumidityFirst);
 
 };

@@ -22,6 +22,10 @@
     background-color: #fc9e1d;
     color: white;
   }
+  #city-forecast h2{
+    background-color: #00a6c7;
+    color: white;
+  }
 
   .weather-icon{
       background-color: #d6d6d6;
