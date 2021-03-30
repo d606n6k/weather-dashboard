@@ -22,12 +22,14 @@
         <section class="container-fluid">
             <div class="row">
                 <div class="col-sm-4 col-md-4 col-12 aside-background">
+                    <h2>Search City:</h2>
                     <div class="input-group mb-3 pt-2">
                         <input id="city-input" type="text" class="form-control" placeholder="Search">
                         <button id="submit-btn" class="btn btn-outline-secondary bg-primary" type="button" >
                             <i class="fa fa-search text-white"></i>
                         </button>
                     </div>
+                    <h2>Recent City Searches:</h2>
                     <ul class="list-group mb-3"></ul>
                 </div>
                 <div class="col-sm-8 col-md-8 col-12 weather-main-bg">
@@ -38,7 +40,12 @@
                         <p class="p-2 rounded">To use this app, please enter the city you want to search weather conditions for in the search field to the left.</p>
                     </div>
                     <!-- container div for 5-day forecast display -->
-                    <div id="city-forecast" class="mt-2 rounded">                       
+                    <div id="city-forecast-container">
+                        <div id="city-forecast1"class="mt-2 p-2 rounded bg-soft"></div>
+                        <div id="city-forecast2"class="mt-2 p-2 rounded bg-hard"></div>
+                        <div id="city-forecast3"class="mt-2 p-2 rounded bg-soft"></div>
+                        <div id="city-forecast4"class="mt-2 p-2 rounded bg-hard"></div>
+                        <div id="city-forecast5"class="mt-2 mb-2 p-2 rounded bg-soft"></div>
                     </div>
                 </div>
             </div>    

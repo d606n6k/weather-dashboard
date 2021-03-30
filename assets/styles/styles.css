@@ -1,6 +1,10 @@
   /* Begin Custom Styles */
   .aside-background {
-    background-color: #e3e3e3;
+    background-color: #252525;
+  }
+
+  .aside-background h2 {
+      color: white;
   }
 
   .weather-main-bg {
@@ -27,13 +31,13 @@
     background-color: #eaeaea;
   }
 
-  #city-forecast h2{
+  #city-forecast-container h2{
     background-color: #00a6c7;
     color: white;
   }
 
   .weather-icon{
-    background-color: #d6d6d6;
+    background-color: #bbd3ff;
     box-shadow: -2px 1px #cccccc;
   }
 .input-group {
@@ -44,4 +48,10 @@
       text-align: left;
   }
 
-  
+.bg-soft {
+    background-color: #cce8ff;
+}
+
+.bg-hard {
+    background-color: #fbdeb2;
+}
