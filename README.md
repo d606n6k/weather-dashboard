@@ -1,12 +1,11 @@
 # weather-dashboard
-https://d606n6k.github.io/weather-dashboard/
 
-## PLACEHOLDER README TEXT!!!
+Live URL: https://d606n6k.github.io/weather-dashboard/
 
-![Password Generator Image](header.png)
+![Weather Dashboard Image](screenshot.png)
 
 ## Description
-This is an application that allows Users to track their schedule for a workday. The user can input text and then click the save button. This saved content is stored in the browser via localstorage so the text that was entered persists after the user navigates away from the page or refreshes the page.
+This is an application that allows Users to search for current weather and a 5 day forecast. The user can use the input field on the page to dynamically put weather data for their specified city.
 
 ## Installation
 To clone this to your repository, please use 
@@ -21,7 +20,7 @@ GitHub CLI: gh repo clone d606n6k/weather-dashboard
 ```
 
 ## Usage
-Enter text into any of the fields and click the blue save button. If you navigate from the page, any text entered will be stored in the hour field! 
+Search for your city using the input field! The current weather will be displayed along with a five day forecast!
 
 
 ## Credits
