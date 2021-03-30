@@ -83,7 +83,7 @@ function renderWeather(weather){
 };
 
 function renderFiveDay(weather){
-    // console.log(weather);
+    console.log(weather);
 // OFFICE HOURS Q: possible for loop to iterate over all list items and display them? Also how do I group to display on a card?
     
     var fch2 = document.createElement("h2");
@@ -94,7 +94,7 @@ function renderFiveDay(weather){
     // first day 
     var dateData = weather.list[0].dt_txt;
     dateData.split(' ');
-    var fcDateFirst = document.createElement("p");
+    var fcDateFirst = document.createElement("h4");
     fcDateFirst.classList = "p-2 d-inline";
     fcDateFirst.textContent = dateData; 
     cityForecaster1.append(fcDateFirst);
@@ -123,7 +123,7 @@ function renderFiveDay(weather){
     // second day 
     var dateData = weather.list[1].dt_txt;
     dateData.split(' ');
-    var fcDateFirst = document.createElement("p");
+    var fcDateFirst = document.createElement("h4");
     fcDateFirst.classList = "p-2 d-inline";
     fcDateFirst.textContent = dateData; 
     cityForecaster2.append(fcDateFirst);
@@ -152,7 +152,7 @@ function renderFiveDay(weather){
     // third day 
     var dateData = weather.list[2].dt_txt;
     dateData.split(' ');
-    var fcDateFirst = document.createElement("p");
+    var fcDateFirst = document.createElement("h4");
     fcDateFirst.classList = "p-2 d-inline";
     fcDateFirst.textContent = dateData; 
     cityForecaster3.append(fcDateFirst);
@@ -180,7 +180,7 @@ function renderFiveDay(weather){
     // fourth day 
     var dateData = weather.list[2].dt_txt;
     dateData.split(' ');
-    var fcDateFirst = document.createElement("p");
+    var fcDateFirst = document.createElement("h4");
     fcDateFirst.classList = "p-2 d-inline";
     fcDateFirst.textContent = dateData; 
     cityForecaster4.append(fcDateFirst);
@@ -208,7 +208,7 @@ function renderFiveDay(weather){
     // fifth day
     var dateData = weather.list[2].dt_txt;
     dateData.split(' ');
-    var fcDateFirst = document.createElement("p");
+    var fcDateFirst = document.createElement("h4");
     fcDateFirst.classList = "p-2 d-inline";
     fcDateFirst.textContent = dateData; 
     cityForecaster5.append(fcDateFirst);
@@ -261,7 +261,7 @@ function fetchUvIndex(){
 
   // 5 day forecast
 function weatherFiveDay(getText){
-   var fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&mode=json&cnt=5&units=imperial&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
+   var fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&mode=json&units=imperial&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
     fetch(fiveDayApiToken)
     .then(response => response.json())
     .then(data => renderFiveDay(data));
