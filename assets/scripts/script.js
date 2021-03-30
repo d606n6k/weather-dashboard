@@ -261,7 +261,7 @@ function fetchUvIndex(){
 
   // 5 day forecast
 function weatherFiveDay(getText){
-   var fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&mode=json&units=imperial&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
+   var fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&mode=json&cnt=5&units=imperial&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
     fetch(fiveDayApiToken)
     .then(response => response.json())
     .then(data => renderFiveDay(data));
