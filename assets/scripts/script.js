@@ -76,9 +76,6 @@ function renderWeather(weather){
     wind.classList = "mb-0 mt-1 ml-2";
     wind.textContent = "Current Wind Speed: " + weather.list[0].wind.speed + " mph";
     cityWeather.append(wind);
-    
-    
-
 };
 
 function renderFiveDay(weather){
@@ -126,7 +123,6 @@ function fetchWeather(getText){
     fetch(apiToken)
     .then(response => response.json())
     .then(data => renderWeather(data))
-    
 };
 
 // get UV index fetch
@@ -162,12 +158,15 @@ submitBtn.on("click", function(event){
         return;
     } else {
         searchedCities.push(getText);
-        window.localStorage.setItem("city", searchedCities);
-        var searchedItem = document.createElement("button");
-        searchedItem.setAttribute("class", "list-group-item");
-        searchedItem.textContent = searchedCities;
-        searchListGroup.append(searchedItem);
-        searchedCities = [];
+        window.localStorage.setItem("city", JSON.stringify(searchedCities));
+        searchListGroup.empty();
+        for(i = 0; i < searchedCities.length; i++){
+            var searchedItem = document.createElement("button");
+            searchedItem.setAttribute("class", "list-group-item");
+            searchedItem.textContent = searchedCities[i];
+            searchListGroup.append(searchedItem);
+        }
+        // searchedCities = [];
         cityWeather.empty();
         cityForecaster.empty();
         fetchWeather(getText);
@@ -176,10 +175,19 @@ submitBtn.on("click", function(event){
 });
 
 // Not sure if this code is needed
-// function getPastSearch(){
-//     var getItems = window.localStorage.getItem(searchedCities);
-// };
+function getPastSearch(){
+    
+    var getItems = JSON.parse(window.localStorage.getItem("city"));
+    // console.log(getItems);
+    for(i = 0; i < getItems.length; i++){
+        // debugger;
+        var searchedItem = document.createElement("button");
+        searchedItem.setAttribute("class", "list-group-item");
+        searchedItem.textContent = getItems[i];
+        searchListGroup.append(searchedItem);
+    }
+};
 
-// getPastSearch();
+getPastSearch();
 renderWeather();
 renderFiveDay();
