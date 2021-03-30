@@ -34,10 +34,19 @@ var cityInput = $("#city-input");
 var submitBtn = $("#submit-btn");
 var searchListGroup = $(".list-group");
 var searchedCities = [];
+var currentLat = [];
+var currentLong = [];
+var currentUvi = "";
 
 function renderWeather(weather){
-    console.log(weather);
-    
+    // console.log(weather);
+
+    currentLat = weather.city.coord.lat;
+    currentLong = weather.city.coord.lon;
+
+    // uv fetch function here
+    fetchUvIndex();
+
     // create h2 for the city name
     var cityName = document.createElement("h2");
     cityName.classList = "p-2 rounded";
@@ -64,9 +73,12 @@ function renderWeather(weather){
     cityWeather.append(humidity);
 
     var wind = document.createElement("p");
-    wind.classList = "mb-0 mt-1 ml-2 pb-2";
+    wind.classList = "mb-0 mt-1 ml-2";
     wind.textContent = "Current Wind Speed: " + weather.list[0].wind.speed + " mph";
     cityWeather.append(wind);
+    
+    
+
 };
 
 function renderFiveDay(weather){
@@ -79,9 +91,11 @@ function renderFiveDay(weather){
     cityForecaster.append(fch2);    
 
     // first item 
+    var dateData = weather.list[0].dt_txt;
+    dateData.split(' ');
     var fcDateFirst = document.createElement("p");
     fcDateFirst.classList = "p-2";
-    fcDateFirst.textContent = weather.list[0].dt_txt; 
+    fcDateFirst.textContent = dateData; 
     cityForecaster.append(fcDateFirst);
 
     // icon
@@ -108,14 +122,32 @@ function renderFiveDay(weather){
 // city current weather 
 function fetchWeather(getText){
     var apiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&units=imperial&units=imperial&appid=ce7ea9acf7f559c24dcf65e60fbcabe5';
+
     fetch(apiToken)
     .then(response => response.json())
-    .then(data => renderWeather(data));
+    .then(data => renderWeather(data))
+    
+};
+
+// get UV index fetch
+function fetchUvIndex(){
+    var uvApiToken = "https://api.openweathermap.org/data/2.5/onecall?lat=" + currentLat + "&lon=" + currentLong +"&units=imperial&exclude=hourly,minutely&appid=598c713e4a8e658a3dfa9b54d09a9d30";
+    fetch(uvApiToken)
+    .then(response => response.json())
+    .then(function(response){
+        currentUvi = response.current.uvi;
+        // append uvi
+        var uvi = document.createElement("p");
+        uvi.classList = "mb-2 mt-1 ml-2 pb-2";
+        uvi.textContent = "Current UV Index: " + currentUvi;
+        cityWeather.append(uvi);
+    })
+    
 };
 
   // 5 day forecast
 function weatherFiveDay(getText){
-    fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
+   var fiveDayApiToken = 'HTTPS://api.openweathermap.org/data/2.5/forecast?q=' + getText + '&mode=json&cnt=5&units=metric&cnt=5&appid=598c713e4a8e658a3dfa9b54d09a9d30';
     fetch(fiveDayApiToken)
     .then(response => response.json())
     .then(data => renderFiveDay(data));
@@ -151,4 +183,3 @@ submitBtn.on("click", function(event){
 // getPastSearch();
 renderWeather();
 renderFiveDay();
-
